@@ -1,5 +1,5 @@
 const AboutPage = () => {
-    return <p>issa about paeg</p>;
+    return <p>issa about paeg but different to check netlify</p>;
   };
   
   export default AboutPage;
