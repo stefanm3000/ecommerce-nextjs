@@ -1,3 +1,9 @@
 const Products = () => {
-  return <></>;
+  return (
+    <>
+      <div>asd</div>
+    </>
+  );
 };
+
+export default Products;
