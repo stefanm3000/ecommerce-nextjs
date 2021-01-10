@@ -8,8 +8,8 @@ const Container = styled.div`
   background: gray;
   font-family: "Roboto", sans-serif;
 
-  background: linear-gradient(to right, #757f9a, #d7dde8);
-  color: #444
+  background: linear-gradient(to right, #74ebd5, #acb6e5);
+  color: #444;
 `;
 
 const Page = styled.div`
