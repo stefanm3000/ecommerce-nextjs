@@ -4,6 +4,8 @@ import Link from "next/link";
 import styled from "styled-components";
 import UnstyledLink from "../components/styled/UnstyledLink";
 import useCart from "../hooks/useCart";
+import { useContext } from "react";
+import { Context } from "../context/Cart";
 
 const Container = styled.div`
   background: white;
