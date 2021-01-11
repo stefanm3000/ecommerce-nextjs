@@ -1,4 +1,5 @@
 ---
+id: 1
 name: Basketball hoop
 description: A hoop and a backboard
 price: 13200

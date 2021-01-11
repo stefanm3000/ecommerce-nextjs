@@ -1,4 +1,5 @@
 ---
+id: 4
 name: Television Set
 description: A TV set with a 80 inch diagonal
 price: 44000

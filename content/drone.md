@@ -1,4 +1,5 @@
 ---
+id: 2
 name: Drone
 description: Flying thing that goes brrr
 price: 33000
