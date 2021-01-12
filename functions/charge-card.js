@@ -1,26 +1,8 @@
-const fs = require("fs");
-const matter = require("gray-matter");
-
-const getProducts = () => {
-  const directory = `${process.cwd()}/content`;
-  const filenames = fs.readdirSync(directory);
-
-  const products = filenames.map((filename) => {
-    const fileContent = fs.readFileSync(`${directory}/${filename}`).toString();
-    const { data } = matter(fileContent);
-
-    return data;
-  });
-
-  return products;
-};
+const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
+const products = require("./products.json");
 
 exports.handler = async (event, context) => {
   const { cart } = JSON.parse(event.body);
-
-  process.env.STRIPE_PUBLIC_KEY
-
-  const products = getProducts();
 
   const cartWithProducts = cart.map(({ id, quantity }) => {
     const product = products.find((p) => p.id === id);
@@ -31,8 +13,29 @@ exports.handler = async (event, context) => {
   });
 
   console.log(cartWithProducts);
+  const lineItems = cartWithProducts.map((product) => ({
+    price_data: {
+      currency: "eur",
+      product_data: {
+        name: product.name,
+      },
+      unit_amount: product.price,
+    },
+    quantity: product.quantity,
+  }));
+
+  const session = await stripe.checkout.sessions.create({
+    payment_method_types: ["card"],
+    line_items: lineItems,
+    mode: "payment",
+    success_url: `${process.env.URL}/success`,
+    cancel_url: `${process.env.URL}/cancelled`,
+  });
+
   return {
     statusCode: 200,
-    body: "I have charged that card many times!",
+    body: JSON.stringify({
+      id: session.id,
+    }),
   };
-};
+}
