@@ -31,29 +31,29 @@ const ProductsContainer = styled.div`
 
 const Price = styled.div`
   position: absolute;
-  bottom: 20px;
+  bottom: 30px;
   right: 20px;
   font-size: 1.3rem;
 `;
 
-const AddToCartButtonIcon = styled(IoAddCircleOutline)`
-font-size: 2rem
-`;
-
 const AddToCartButton = styled.button`
-height: 2.5rem;
-width: 4rem;
-background: transparent;
-border: none;
-position: absolute;
-  bottom: 10px;
-  left: 10px;
+  height: 2.5rem;
+  width: 10rem;
+  background: transparent;
+  border: none;
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  align-content: center;
+  background: #82dfd9;
+  border-radius: 5px;
+  color: white;
+  font-size: 20px;
 
-&:hover {
-  cursor: pointer;
-}
-`
-
+  &:hover {
+    cursor: pointer;
+  }
+`;
 
 const renderProduct = (product, addItemToCart) => {
   const handleClick = (e) => {
@@ -67,9 +67,7 @@ const renderProduct = (product, addItemToCart) => {
           <h1>{product.name}</h1>
           <p>{product.description}</p>
 
-          <AddToCartButton onClick={handleClick}>
-            <AddToCartButtonIcon />
-          </AddToCartButton>
+          <AddToCartButton onClick={handleClick}>Add to cart</AddToCartButton>
 
           <Price>€{product.price / 100}</Price>
         </Container>
