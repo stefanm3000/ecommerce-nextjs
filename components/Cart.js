@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { GrClose } from "react-icons/gr";
 import useCart from "../hooks/useCart";
+import { useRouter } from "next/router";
 
 const Container = styled.div`
   position: fixed;
@@ -33,13 +34,13 @@ const Content = styled.div`
   padding: 1rem 2rem;
 `;
 
-const Title = styled.h2`
+export const Title = styled.h2`
   font-size: 1.5rem;
   font-weight: 450;
   border-bottom: 1px solid lightgray;
 `;
 
-const Item = styled.li`
+export const Item = styled.li`
   list-style: none;
   display: flex;
   justify-content: space-between;
@@ -47,11 +48,11 @@ const Item = styled.li`
   margin-bottom: 0.2rem;
 `;
 
-const Ul = styled.ul`
+export const Ul = styled.ul`
   padding: 0;
 `;
 
-const Total = styled.p`
+export const Total = styled.p`
   padding: 0;
   display: flex;
   justify-content: space-between;
@@ -59,7 +60,7 @@ const Total = styled.p`
   font-weight: 550;
 `;
 
-const BuyButton = styled.button`
+export const BuyButton = styled.button`
   background: transparent;
   font-size: 1.5rem;
   color: white;
@@ -77,9 +78,16 @@ const BuyButton = styled.button`
 `;
 
 const Cart = () => {
-  const { cart, isOpen, openCart, closeCart } = useCart();
+  const router = useRouter();
+
+  const { cart, isOpen, openCart, closeCart, total } = useCart();
   const handleClick = () => {
     closeCart();
+  };
+
+  const goToCheckout = () => {
+    closeCart();
+    router.push("/checkout");
   };
 
   return (
@@ -88,24 +96,31 @@ const Cart = () => {
         <Xcomp onClick={handleClick} />
       </XContainer>
       <Content>
-        <Title>Your items:</Title>
-        <Ul>
-          {cart.map((item) => {
-            return (
-              <Item>
-                <span>
-                  {item.quantity} x {item.name}
-                </span>
-                <span>€{item.price / 100}</span>
-              </Item>
-            );
-          })}
-        </Ul>
+        {cart.length ? (
+          <>
+            <Title>Your items:</Title>
+            <Ul>
+              {cart.map((item) => {
+                return (
+                  <Item>
+                    <span>
+                      {item.quantity} x {item.name}
+                    </span>
+                    <span>€{item.price / 100}</span>
+                  </Item>
+                );
+              })}
+            </Ul>
+          </>
+        ) : (
+          <h3>Your cart is empty</h3>
+        )}
+
         <Total>
           <span>Total: </span>
-          <span>123</span>
+          <span>€{total / 100}</span>
         </Total>
-        <BuyButton>Checkout</BuyButton>
+        <BuyButton onClick={goToCheckout}>Checkout</BuyButton>
       </Content>
     </Container>
   );

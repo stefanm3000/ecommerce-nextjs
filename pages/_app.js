@@ -12,6 +12,7 @@ const Container = styled.div`
 
   background: linear-gradient(to right, #74ebd5, #acb6e5);
   color: #444;
+  min-height: 100vh;
 `;
 
 const Page = styled.div`

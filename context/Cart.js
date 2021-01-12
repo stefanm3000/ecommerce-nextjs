@@ -6,6 +6,7 @@ const Cart = ({ children }) => {
   const getInitialCart = () => JSON.parse(localStorage.getItem("cart"));
   const [cart, setCart] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
+  const [total, setTotal] = useState(0);
 
   const openCart = () => {
     setIsOpen(true);
@@ -24,6 +25,13 @@ const Cart = ({ children }) => {
 
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
+
+    let newTotal = 0;
+
+    cart.forEach((item) => {
+      newTotal += item.price * item.quantity;
+    });
+    setTotal(newTotal);
   }, [cart]);
 
   const addItemToCart = (product, quantity = 1) => {
@@ -44,6 +52,11 @@ const Cart = ({ children }) => {
     setCart(newCart);
   };
 
+  const clearCart = () => {
+    localStorage.removeItem("cart");
+    setCart([]);
+  };
+
   const exposed = {
     cart,
     addItemToCart,
@@ -51,6 +64,8 @@ const Cart = ({ children }) => {
     openCart,
     closeCart,
     isOpen,
+    total,
+    clearCart,
   };
 
   return (
