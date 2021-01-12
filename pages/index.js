@@ -6,6 +6,7 @@ import UnstyledLink from "../components/styled/UnstyledLink";
 import useCart from "../hooks/useCart";
 import { useContext } from "react";
 import { Context } from "../context/Cart";
+import { IoAddCircleOutline } from "react-icons/io5";
 
 const Container = styled.div`
   background: white;
@@ -30,10 +31,29 @@ const ProductsContainer = styled.div`
 
 const Price = styled.div`
   position: absolute;
-  bottom: 10px;
-  right: 10px;
+  bottom: 20px;
+  right: 20px;
   font-size: 1.3rem;
 `;
+
+const AddToCartButtonIcon = styled(IoAddCircleOutline)`
+font-size: 2rem
+`;
+
+const AddToCartButton = styled.button`
+height: 2.5rem;
+width: 4rem;
+background: transparent;
+border: none;
+position: absolute;
+  bottom: 10px;
+  left: 10px;
+
+&:hover {
+  cursor: pointer;
+}
+`
+
 
 const renderProduct = (product, addItemToCart) => {
   const handleClick = (e) => {
@@ -46,7 +66,11 @@ const renderProduct = (product, addItemToCart) => {
         <Container>
           <h1>{product.name}</h1>
           <p>{product.description}</p>
-          <button onClick={handleClick}>Add to Cart</button>
+
+          <AddToCartButton onClick={handleClick}>
+            <AddToCartButtonIcon />
+          </AddToCartButton>
+
           <Price>€{product.price / 100}</Price>
         </Container>
       </UnstyledLink>

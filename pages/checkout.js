@@ -51,7 +51,7 @@ const Checkout = () => {
   const { cart, total } = useCart();
 
   const processPayment = async () => {
-    const url = "/netlify/functions/charge-card";
+    const url = "/.netlify/functions/charge-card";
     const newCart = cart.map(({ id, quantity }) => ({
       id,
       quantity,
