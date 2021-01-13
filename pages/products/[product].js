@@ -10,8 +10,8 @@ const Title = styled.div`
 `;
 
 const SubTitle = styled.p`
-  padding: 0.7rem 1rem;
   color: #666;
+  font-size: 22px;
 `;
 
 const Price = styled.span`
@@ -25,16 +25,43 @@ const Price = styled.span`
   display: inline-block;
 `;
 
+const ImgAndDescriptionContainer = styled.div`
+  display: flex;
+  align-items: center;
+  position: relative;
+`;
+
+const StyledSpanForDescription = styled.span`
+  color: #999696;
+  font-weight: 550;
+`;
+
+const StyledImage = styled.img`
+  height: 150px;
+  width: auto;
+  position: absolute;
+  right: 100px;
+`;
+
+const StyledDivForContentDescription = styled.div`
+width: 50%`
+
 const Product = ({ product: { data, content } }) => {
   const html = marked(content);
   return (
     <Page>
       <Title>
         <h1>{data.name}</h1>
-        <SubTitle>{data.description}</SubTitle>
       </Title>
+
+      <SubTitle>{data.description}</SubTitle>
+
+      <ImgAndDescriptionContainer>
+        <StyledImage src={data.imgUrl}></StyledImage>
+        <StyledSpanForDescription></StyledSpanForDescription>
+      </ImgAndDescriptionContainer>
       <Price>€{data.price / 100}</Price>
-      <div dangerouslySetInnerHTML={{ __html: html }} />
+      <StyledDivForContentDescription dangerouslySetInnerHTML={{ __html: html }} />
     </Page>
   );
 };
