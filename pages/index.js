@@ -32,6 +32,10 @@ const Container = styled.div`
   &:hover {
     transform: scale(1.024);
   }
+
+  @media (max-width: 768px) {
+    margin: 0 20px;
+  }
 `;
 
 const ProductsContainer = styled.div`
@@ -40,6 +44,10 @@ const ProductsContainer = styled.div`
   grid-gap: 0.7rem;
   padding-top: 1rem;
   padding-bottom: 1rem;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 const Price = styled.div`
