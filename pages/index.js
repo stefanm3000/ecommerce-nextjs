@@ -9,6 +9,11 @@ const ImgAndDescriptionContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  @media (max-width: 686px) {
+    height: 6rem;
+    margin-bottom: 20%;
+  }
 `;
 
 const StyledSpanForDescription = styled.span`
