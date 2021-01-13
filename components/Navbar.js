@@ -30,6 +30,7 @@ const ShopCart = styled(AiOutlineShoppingCart)`
   &:hover {
     cursor: pointer;
     transform: scale(1.3);
+    opacity: 90%;
   }
 `;
 
@@ -47,6 +48,12 @@ const NumberOnCart = styled.div`
   grid-row: 1;
   justify-content: center;
   align-items: center;
+  transition: transform 0.15s;
+
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.2);
+  }
 `;
 
 const ShopCartContainer = styled.div`
@@ -66,7 +73,9 @@ const Navbar = () => {
         </Link>
         <ShopCartContainer>
           <ShopCart onClick={handleClick} />
-          {cart.length ? <NumberOnCart>{totalQuantity}</NumberOnCart> : null}
+          {cart.length ? (
+            <NumberOnCart onClick={handleClick}>{totalQuantity}</NumberOnCart>
+          ) : null}
         </ShopCartContainer>
       </NavContainer>
     </Nav>

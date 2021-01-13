@@ -14,6 +14,7 @@ const Container = styled.div`
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   transform: translateX(${(props) => (props.isOpen ? "0" : "100%")});
   transition: transform 0.28s ease-in-out;
+  z-index:5;
 `;
 
 const XContainer = styled.div`
