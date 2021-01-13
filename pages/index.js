@@ -4,9 +4,22 @@ import Link from "next/link";
 import styled from "styled-components";
 import UnstyledLink from "../components/styled/UnstyledLink";
 import useCart from "../hooks/useCart";
-import { useContext } from "react";
-import { Context } from "../context/Cart";
-import { IoAddCircleOutline } from "react-icons/io5";
+
+const ImgAndDescriptionContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+const StyledSpanForDescription = styled.span`
+color: #999696;
+font-weight: 550`;
+
+
+const StyledImage = styled.img`
+  height: 80px;
+  width: auto;
+`;
 
 const Container = styled.div`
   background: white;
@@ -65,8 +78,12 @@ const renderProduct = (product, addItemToCart) => {
       <UnstyledLink>
         <Container>
           <h1>{product.name}</h1>
-          <p>{product.description}</p>
-
+          <ImgAndDescriptionContainer>
+            <StyledImage src={product.imgUrl} />
+            <StyledSpanForDescription>
+              {product.description}
+            </StyledSpanForDescription>
+          </ImgAndDescriptionContainer>
           <AddToCartButton onClick={handleClick}>Add to cart</AddToCartButton>
 
           <Price>€{product.price / 100}</Price>
