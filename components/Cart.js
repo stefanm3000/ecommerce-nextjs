@@ -102,7 +102,7 @@ const Cart = () => {
             <Ul>
               {cart.map((item) => {
                 return (
-                  <Item>
+                  <Item key={item.id}>
                     <span>
                       {item.quantity} x {item.name}
                     </span>

@@ -21,9 +21,11 @@ const NavContainer = styled.div`
 `;
 
 const ShopCart = styled(AiOutlineShoppingCart)`
-  height: 100%;
+  height: 2rem;
   width: 1.8rem;
   transition: transform 0.4s;
+  grid-column: 1;
+  grid-row: 1;
 
   &:hover {
     cursor: pointer;
@@ -31,9 +33,27 @@ const ShopCart = styled(AiOutlineShoppingCart)`
   }
 `;
 
-const Navbar = () => {
-  const { openCart } = useCart();
+const NumberOnCart = styled.div`
+  border-radius: 50%;
+  background: red;
+  width: 15px;
+  height: 15px;
+  font-size: 0.85rem;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  z-index: 3;
+  grid-column: 1;
+  grid-row: 1;
+`;
 
+const ShopCartContainer = styled.div`
+  display: grid;
+`;
+
+const Navbar = () => {
+  const { openCart, cart } = useCart();
   const handleClick = () => {
     openCart();
   };
@@ -43,7 +63,14 @@ const Navbar = () => {
         <Link href="/">
           <UnstyledLink>The Shop</UnstyledLink>
         </Link>
-        <ShopCart onClick={handleClick} />
+        <ShopCartContainer>
+          <ShopCart onClick={handleClick} />
+          {cart.length ? (
+            <>
+              <NumberOnCart>{cart.length}</NumberOnCart>
+            </>
+          ) : null}
+        </ShopCartContainer>
       </NavContainer>
     </Nav>
   );
