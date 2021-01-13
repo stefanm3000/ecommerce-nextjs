@@ -3,6 +3,24 @@ import matter from "gray-matter";
 import marked from "marked";
 import styled from "styled-components";
 import Page from "../../components/styled/Page";
+import useCart from "../../hooks/useCart";
+
+const AddToCartButton = styled.button`
+  height: 2.5rem;
+  width: 10rem;
+  background: transparent;
+  border: none;
+  align-content: center;
+  background: #82dfd9;
+  border-radius: 5px;
+  color: white;
+  font-size: 20px;
+  margin-top: 50px;
+
+  &:hover {
+    cursor: pointer;
+  }
+`;
 
 const Title = styled.div`
   display: flex;
@@ -44,9 +62,15 @@ const StyledImage = styled.img`
 `;
 
 const StyledDivForContentDescription = styled.div`
-width: 50%`
+  width: 50%;
+`;
 
 const Product = ({ product: { data, content } }) => {
+  const { cart, addItemToCart } = useCart();
+  const handleClick = (e) => {
+    e.stopPropagation();
+    addItemToCart([...product]);
+  };
   const html = marked(content);
   return (
     <Page>
@@ -61,7 +85,10 @@ const Product = ({ product: { data, content } }) => {
         <StyledSpanForDescription></StyledSpanForDescription>
       </ImgAndDescriptionContainer>
       <Price>€{data.price / 100}</Price>
-      <StyledDivForContentDescription dangerouslySetInnerHTML={{ __html: html }} />
+      <StyledDivForContentDescription
+        dangerouslySetInnerHTML={{ __html: html }}
+      />
+      <AddToCartButton onClick={handleClick}>Add to cart</AddToCartButton>
     </Page>
   );
 };

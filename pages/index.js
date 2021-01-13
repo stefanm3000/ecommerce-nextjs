@@ -12,9 +12,9 @@ const ImgAndDescriptionContainer = styled.div`
 `;
 
 const StyledSpanForDescription = styled.span`
-color: #999696;
-font-weight: 550`;
-
+  color: #999696;
+  font-weight: 550;
+`;
 
 const StyledImage = styled.img`
   height: 80px;
@@ -95,7 +95,6 @@ const renderProduct = (product, addItemToCart) => {
 
 const HomePage = (props) => {
   const { cart, addItemToCart } = useCart();
-  console.log(cart);
 
   return (
     <ProductsContainer>
