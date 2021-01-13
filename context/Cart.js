@@ -7,6 +7,7 @@ const Cart = ({ children }) => {
   const [cart, setCart] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
   const [total, setTotal] = useState(0);
+  const [totalQuantity, setTotalQuantity] = useState(0);
 
   const openCart = () => {
     setIsOpen(true);
@@ -32,6 +33,13 @@ const Cart = ({ children }) => {
       newTotal += item.price * item.quantity;
     });
     setTotal(newTotal);
+
+    let newTotalQty = 0;
+
+    cart.forEach((item) => {
+      newTotalQty += item.quantity;
+    });
+    setTotalQuantity(newTotalQty);
   }, [cart]);
 
   const addItemToCart = (product, quantity = 1) => {
@@ -66,6 +74,7 @@ const Cart = ({ children }) => {
     isOpen,
     total,
     clearCart,
+    totalQuantity,
   };
 
   return (

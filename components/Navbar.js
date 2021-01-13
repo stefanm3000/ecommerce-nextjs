@@ -36,16 +36,17 @@ const ShopCart = styled(AiOutlineShoppingCart)`
 const NumberOnCart = styled.div`
   border-radius: 50%;
   background: red;
-  width: 15px;
-  height: 15px;
-  font-size: 0.85rem;
+  width: 18px;
+  height: 18px;
+  font-size: 0.7rem;
+  font-weight: 550;
   color: white;
   display: flex;
-  justify-content: center;
-  align-content: center;
   z-index: 3;
   grid-column: 1;
   grid-row: 1;
+  justify-content: center;
+  align-items: center;
 `;
 
 const ShopCartContainer = styled.div`
@@ -53,7 +54,7 @@ const ShopCartContainer = styled.div`
 `;
 
 const Navbar = () => {
-  const { openCart, cart } = useCart();
+  const { openCart, cart, totalQuantity } = useCart();
   const handleClick = () => {
     openCart();
   };
@@ -65,11 +66,7 @@ const Navbar = () => {
         </Link>
         <ShopCartContainer>
           <ShopCart onClick={handleClick} />
-          {cart.length ? (
-            <>
-              <NumberOnCart>{cart.length}</NumberOnCart>
-            </>
-          ) : null}
+          {cart.length ? <NumberOnCart>{totalQuantity}</NumberOnCart> : null}
         </ShopCartContainer>
       </NavContainer>
     </Nav>
