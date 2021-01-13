@@ -53,7 +53,7 @@ const ProductsContainer = styled.div`
 const Price = styled.div`
   position: absolute;
   bottom: 30px;
-  right: 20px;
+  right: 2rem;
   font-size: 1.3rem;
 `;
 

@@ -30,6 +30,11 @@ const Title = styled.div`
 const SubTitle = styled.p`
   color: #666;
   font-size: 22px;
+
+  @media (max-width: 768px) {
+    font-size: 20px;
+    width: 50%;
+  }
 `;
 
 const Price = styled.span`
@@ -52,6 +57,8 @@ const ImgAndDescriptionContainer = styled.div`
 const StyledSpanForDescription = styled.span`
   color: #999696;
   font-weight: 550;
+  
+  
 `;
 
 const StyledImage = styled.img`
@@ -59,6 +66,10 @@ const StyledImage = styled.img`
   width: auto;
   position: absolute;
   right: 100px;
+
+  @media (max-width: 768px) {
+    right: 0  ;
+  }
 `;
 
 const StyledDivForContentDescription = styled.div`
@@ -66,7 +77,7 @@ const StyledDivForContentDescription = styled.div`
 `;
 
 const Product = ({ product: { data, content } }) => {
-  const { cart, addItemToCart } = useCart();
+  const { addItemToCart } = useCart();
   const handleClick = (e) => {
     e.stopPropagation();
     addItemToCart(data);

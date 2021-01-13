@@ -6,6 +6,10 @@ const Page = styled.div`
   padding: 1rem 2rem;
   margin: 1rem 0;
   min-height: 300px;
+
+  @media (max-width: 768px) {
+    margin: 10px 20px;
+  }
 `;
 
 export default Page;
