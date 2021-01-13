@@ -69,7 +69,7 @@ const Product = ({ product: { data, content } }) => {
   const { cart, addItemToCart } = useCart();
   const handleClick = (e) => {
     e.stopPropagation();
-    addItemToCart([...product]);
+    addItemToCart(data);
   };
   const html = marked(content);
   return (
