@@ -14,7 +14,7 @@ const Container = styled.div`
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   transform: translateX(${(props) => (props.isOpen ? "0" : "100%")});
   transition: transform 0.28s ease-in-out;
-  z-index:5;
+  z-index: 5;
 `;
 
 const XContainer = styled.div`
@@ -62,7 +62,6 @@ export const Total = styled.p`
 `;
 
 export const BuyButton = styled.button`
-  background: transparent;
   font-size: 1.5rem;
   color: white;
   outline: none;
@@ -78,10 +77,35 @@ export const BuyButton = styled.button`
   }
 `;
 
+const ClearButton = styled.button`
+  font-size: 1.5rem;
+  color: white;
+  outline: none;
+  border: none;
+  background: #97befc;
+  border-radius: 3px;
+  width: 100%;
+  padding: 1.3rem;
+  font-weight: 600;
+  margin-top: 2rem;
+
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
 const Cart = () => {
   const router = useRouter();
 
-  const { cart, isOpen, openCart, closeCart, total } = useCart();
+  const {
+    cart,
+    isOpen,
+    openCart,
+    closeCart,
+    total,
+    clearCart,
+    removeItemFromCart,
+  } = useCart();
   const handleClick = () => {
     closeCart();
   };
@@ -122,6 +146,9 @@ const Cart = () => {
           <span>€{total / 100}</span>
         </Total>
         <BuyButton onClick={goToCheckout}>Checkout</BuyButton>
+        {cart.length ? (
+          <ClearButton onClick={clearCart}>Clear cart</ClearButton>
+        ) : null}
       </Content>
     </Container>
   );
