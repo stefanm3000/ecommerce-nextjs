@@ -3,6 +3,7 @@ import { Normalize } from "styled-normalize";
 import Navbar from "../components/Navbar";
 import CartProvider from "../context/Cart";
 import Cart from "../components/Cart";
+import Head from "next/head";
 
 const Container = styled.div`
   @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap");
@@ -13,7 +14,6 @@ const Container = styled.div`
   background: linear-gradient(to right, #74ebd5, #acb6e5);
   color: #444;
   min-height: 100vh;
-
 `;
 
 const Page = styled.div`
@@ -24,16 +24,27 @@ const Page = styled.div`
 
 const MyApp = ({ Component, pageProps }) => {
   return (
-    <CartProvider>
-      <Container>
-        <Normalize />
-        <Navbar />
-        <Page>
-          <Component {...pageProps} />
-        </Page>
-        <Cart />
-      </Container>
-    </CartProvider>
+    <>
+      <Head>
+        <title>Electronics Store in nextjs</title>
+        <meta
+          property="og:title"
+          content="Electronics Store in nextjs"
+          key="title"
+        />
+        <link rel="nextjs logo favicon" href="/favicon.png" />
+      </Head>
+      <CartProvider>
+        <Container>
+          <Normalize />
+          <Navbar />
+          <Page>
+            <Component {...pageProps} />
+          </Page>
+          <Cart />
+        </Container>
+      </CartProvider>
+    </>
   );
 };
 
