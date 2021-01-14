@@ -32,7 +32,7 @@ const MyApp = ({ Component, pageProps }) => {
           content="Electronics Store in nextjs"
           key="title"
         />
-        <link rel="nextjs logo favicon" href="/favicon.png" />
+        <link rel="shortcut icon" href="/favicon.png" />
       </Head>
       <CartProvider>
         <Container>

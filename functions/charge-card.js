@@ -12,7 +12,6 @@ exports.handler = async (event, context) => {
     };
   });
 
-  console.log(cartWithProducts);
   const lineItems = cartWithProducts.map((product) => ({
     price_data: {
       currency: "eur",

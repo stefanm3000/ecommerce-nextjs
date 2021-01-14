@@ -107,7 +107,7 @@ const renderProduct = (product, addItemToCart) => {
 };
 
 const HomePage = (props) => {
-  const { cart, addItemToCart } = useCart();
+  const { addItemToCart } = useCart();
 
   return (
     <ProductsContainer>
