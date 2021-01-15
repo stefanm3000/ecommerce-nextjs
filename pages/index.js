@@ -113,6 +113,7 @@ const renderProduct = (product, addItemToCart, removeItemFromCart) => {
   };
 
   const { cart } = useCart();
+
   return (
     <Link href={product.slug} key={product.id}>
       <UnstyledLink>
@@ -125,9 +126,15 @@ const renderProduct = (product, addItemToCart, removeItemFromCart) => {
             </StyledSpanForDescription>
           </ImgAndDescriptionContainer>
           <AddToCartButton onClick={handleClick}>Add to cart</AddToCartButton>
-          <RemoveItemFromCartButton onClick={handleRemove}>
-            -
-          </RemoveItemFromCartButton>
+          {cart.map((item) => {
+            if (item.id === product.id) {
+              return (
+                <RemoveItemFromCartButton onClick={handleRemove} key={product.id}>
+                  -
+                </RemoveItemFromCartButton>
+              );
+            }
+          })}
           <Price>€{product.price / 100}</Price>
         </Container>
       </UnstyledLink>

@@ -116,11 +116,6 @@ const Cart = () => {
     router.push("/checkout");
   };
 
-  const handleRemove = (id) => {
-    removeItemFromCart(id);
-  };
-
-
   return (
     <Container isOpen={isOpen}>
       <XContainer>
