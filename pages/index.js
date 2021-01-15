@@ -81,11 +81,38 @@ const AddToCartButton = styled.button`
   }
 `;
 
-const renderProduct = (product, addItemToCart) => {
+const RemoveItemFromCartButton = styled.button`
+  height: 2.5rem;
+  width: 2rem;
+  background: transparent;
+  border: none;
+  position: absolute;
+  bottom: 20px;
+  left: 12rem;
+  align-content: center;
+  border-radius: 5px;
+  color: white;
+  font-size: 20px;
+  border: 2px solid red;
+  color: red;
+
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
+const renderProduct = (product, addItemToCart, removeItemFromCart) => {
   const handleClick = (e) => {
     e.stopPropagation();
     addItemToCart(product);
   };
+
+  const handleRemove = (e) => {
+    e.stopPropagation();
+    removeItemFromCart(product.id);
+  };
+
+  const { cart } = useCart();
   return (
     <Link href={product.slug} key={product.id}>
       <UnstyledLink>
@@ -98,7 +125,9 @@ const renderProduct = (product, addItemToCart) => {
             </StyledSpanForDescription>
           </ImgAndDescriptionContainer>
           <AddToCartButton onClick={handleClick}>Add to cart</AddToCartButton>
-
+          <RemoveItemFromCartButton onClick={handleRemove}>
+            -
+          </RemoveItemFromCartButton>
           <Price>€{product.price / 100}</Price>
         </Container>
       </UnstyledLink>
@@ -107,11 +136,13 @@ const renderProduct = (product, addItemToCart) => {
 };
 
 const HomePage = (props) => {
-  const { addItemToCart } = useCart();
+  const { addItemToCart, removeItemFromCart } = useCart();
 
   return (
     <ProductsContainer>
-      {props.products.map((product) => renderProduct(product, addItemToCart))}
+      {props.products.map((product) =>
+        renderProduct(product, addItemToCart, removeItemFromCart)
+      )}
     </ProductsContainer>
   );
 };

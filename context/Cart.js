@@ -53,9 +53,9 @@ const Cart = ({ children }) => {
     }
   };
 
-  const removeItemFromCart = (id) => {
+  const removeItemFromCart = (ident) => {
     const newCart = cart.filter((item) => {
-      return item.id !== id;
+      return item.id !== ident;
     });
     setCart(newCart);
   };

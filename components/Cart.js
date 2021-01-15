@@ -106,6 +106,7 @@ const Cart = () => {
     clearCart,
     removeItemFromCart,
   } = useCart();
+
   const handleClick = () => {
     closeCart();
   };
@@ -114,6 +115,11 @@ const Cart = () => {
     closeCart();
     router.push("/checkout");
   };
+
+  const handleRemove = (id) => {
+    removeItemFromCart(id);
+  };
+
 
   return (
     <Container isOpen={isOpen}>
