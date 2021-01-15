@@ -94,6 +94,12 @@ const ClearButton = styled.button`
   }
 `;
 
+const XButtonForCart = styled.button`
+background: transparent;
+border: none;
+width: 0.5rem;
+height: 0.5rem;`
+
 const Cart = () => {
   const router = useRouter();
 

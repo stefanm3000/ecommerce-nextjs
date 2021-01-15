@@ -57,8 +57,6 @@ const ImgAndDescriptionContainer = styled.div`
 const StyledSpanForDescription = styled.span`
   color: #999696;
   font-weight: 550;
-  
-  
 `;
 
 const StyledImage = styled.img`
@@ -68,7 +66,7 @@ const StyledImage = styled.img`
   right: 100px;
 
   @media (max-width: 768px) {
-    right: 0  ;
+    right: 0;
   }
 `;
 
@@ -76,11 +74,34 @@ const StyledDivForContentDescription = styled.div`
   width: 50%;
 `;
 
+const RemoveOneFromQuantityButton = styled.button`
+  height: 2.5rem;
+  width: 5rem;
+  border-radius: 5px;
+  color: white;
+  font-size: 20px;
+  margin-top: 50px;
+  background: transparent;
+  border: 2px solid red;
+  color: red;
+  margin-left: 1rem;
+  text-align: center;
+
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
 const Product = ({ product: { data, content } }) => {
-  const { addItemToCart } = useCart();
+  const { addItemToCart, removeOneFromQuantity, cart } = useCart();
   const handleClick = (e) => {
     e.stopPropagation();
     addItemToCart(data);
+  };
+
+  const handleRemove = (e) => {
+    e.stopPropagation();
+    removeOneFromQuantity(data);
   };
   const html = marked(content);
   return (
@@ -100,6 +121,15 @@ const Product = ({ product: { data, content } }) => {
         dangerouslySetInnerHTML={{ __html: html }}
       />
       <AddToCartButton onClick={handleClick}>Add to cart</AddToCartButton>
+      {cart.map((item) => {
+        if (item.id === data.id) {
+          return (
+            <RemoveOneFromQuantityButton onClick={handleRemove} key={data.id}>
+              -
+            </RemoveOneFromQuantityButton>
+          );
+        }
+      })}
     </Page>
   );
 };
