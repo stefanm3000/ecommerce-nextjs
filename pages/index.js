@@ -101,7 +101,7 @@ const RemoveItemFromCartButton = styled.button`
   }
 `;
 
-const renderProduct = (product, addItemToCart, removeItemFromCart) => {
+const renderProduct = (product, addItemToCart, removeOneFromQuantity) => {
   const handleClick = (e) => {
     e.stopPropagation();
     addItemToCart(product);
@@ -109,7 +109,7 @@ const renderProduct = (product, addItemToCart, removeItemFromCart) => {
 
   const handleRemove = (e) => {
     e.stopPropagation();
-    removeItemFromCart(product.id);
+    removeOneFromQuantity(product);
   };
 
   const { cart } = useCart();
@@ -143,12 +143,12 @@ const renderProduct = (product, addItemToCart, removeItemFromCart) => {
 };
 
 const HomePage = (props) => {
-  const { addItemToCart, removeItemFromCart } = useCart();
+  const { addItemToCart, removeOneFromQuantity } = useCart();
 
   return (
     <ProductsContainer>
       {props.products.map((product) =>
-        renderProduct(product, addItemToCart, removeItemFromCart)
+        renderProduct(product, addItemToCart, removeOneFromQuantity)
       )}
     </ProductsContainer>
   );
