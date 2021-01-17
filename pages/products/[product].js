@@ -4,6 +4,7 @@ import marked from "marked";
 import styled from "styled-components";
 import Page from "../../components/styled/Page";
 import useCart from "../../hooks/useCart";
+import Carousel from "../../components/Carousel";
 
 const AddToCartButton = styled.button`
   height: 2.5rem;
@@ -44,30 +45,19 @@ const Price = styled.span`
   border-radius: 5px;
   background: #2cdb5b;
   color: white;
+  position:absolute;
   margin-bottom: 0.5rem;
-  display: inline-block;
+  bottom: 8px;
+  right: 2rem;
+  font-size: 1.3rem;
 `;
 
 const ImgAndDescriptionContainer = styled.div`
   display: flex;
   align-items: center;
   position: relative;
-`;
-
-const StyledSpanForDescription = styled.span`
-  color: #999696;
-  font-weight: 550;
-`;
-
-const StyledImage = styled.img`
-  height: 150px;
-  width: auto;
-  position: absolute;
-  right: 100px;
-
-  @media (max-width: 768px) {
-    right: 0;
-  }
+  justify-content: center;
+  padding-top: 2rem;
 `;
 
 const StyledDivForContentDescription = styled.div`
@@ -112,9 +102,18 @@ const Product = ({ product: { data, content } }) => {
 
       <SubTitle>{data.description}</SubTitle>
 
-      <ImgAndDescriptionContainer>
-        <StyledImage src={data.imgUrl}></StyledImage>
-        <StyledSpanForDescription></StyledSpanForDescription>
+      <ImgAndDescriptionContainer
+        style={{
+          justifyContent: "center",
+          display: "flex",
+        }}
+      >
+        <Carousel
+          
+          imgUrl={data.imgUrl}
+          imgUrl2={data.imgUrl2}
+          imgUrl3={data.imgUrl3}
+        />
       </ImgAndDescriptionContainer>
       <Price>€{data.price / 100}</Price>
       <StyledDivForContentDescription
