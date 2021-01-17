@@ -14,6 +14,19 @@ const LeftArrow = styled(MdKeyboardArrowLeft)``;
 
 const RightArrow = styled(MdKeyboardArrowRight)``;
 
+const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  position: relative;
+  bottom: 9rem;
+  width: 30rem;
+
+  @media (max-width: 550px) {
+    width: 25rem;
+  }
+`;
+
 const Carousel = (props) => {
   return (
     <CarouselProvider
@@ -59,16 +72,7 @@ const Carousel = (props) => {
           <img src={props.imgUrl3} />
         </Slide>
       </Slider>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignContent: "center",
-          position: "relative",
-          bottom: "9rem",
-          width: "30rem",
-        }}
-      >
+      <ButtonContainer>
         <ButtonBack
           style={{
             zIndex: "10",
@@ -93,7 +97,7 @@ const Carousel = (props) => {
         >
           <RightArrow />
         </ButtonNext>
-      </div>
+      </ButtonContainer>
     </CarouselProvider>
   );
 };
