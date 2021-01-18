@@ -97,6 +97,7 @@ const RemoveOneFromQuantityButton = styled.button`
 const AddButtonAndPriceContainer = styled.div`
   display: flex;
   justify-content: space-between;
+  margin-top: 4rem;
 `;
 
 const Product = ({ product: { data, content } }) => {
