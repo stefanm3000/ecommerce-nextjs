@@ -23,7 +23,7 @@ const ButtonContainer = styled.div`
   width: 30rem;
 
   @media (max-width: 550px) {
-    width: 25rem;
+    width: 20rem;
   }
 `;
 
@@ -33,13 +33,14 @@ const Carousel = (props) => {
       naturalSlideWidth={120}
       naturalSlideHeight={100}
       totalSlides={3}
-      style={{ marginTop: "120px", justifyItems: "center", margin: "0 auto" }}
+      style={{ justifyItems: "center", alignItems: "center", margin: "0 auto" }}
     >
       <Slider
         style={{
           height: "15rem",
           width: "18rem",
           margin: "0 auto",
+          alignItems: "center",
         }}
       >
         <Slide
@@ -56,7 +57,6 @@ const Carousel = (props) => {
           style={{
             height: "15rem",
             width: "18rem",
-            margin: "0 auto",
           }}
         >
           <img src={props.imgUrl2} />
@@ -66,7 +66,6 @@ const Carousel = (props) => {
           style={{
             height: "15rem",
             width: "18rem",
-            margin: "0 auto",
           }}
         >
           <img src={props.imgUrl3} />

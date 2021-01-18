@@ -4,8 +4,8 @@ name: Philips Hue
 description: Bluetooth Lightstrip Plus
 price: 32300
 imgUrl: /hue.jpg
-imgUrl2: http://placecorgi.com/250
-imgUrl3: http://placecorgi.com/250
+imgUrl2: https://picsum.photos/200/300
+imgUrl3: https://picsum.photos/200/300
 ---
 
 2m/6ft Base Kit with Plug, (Voice Compatible with Amazon Alexa, Apple Homekit and Google Home)

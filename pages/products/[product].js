@@ -45,8 +45,6 @@ const Price = styled.span`
   border-radius: 5px;
   background: #2cdb5b;
   color: white;
-  position:absolute;
-  margin-bottom: 0.5rem;
   bottom: 8px;
   right: 2rem;
   font-size: 1.3rem;
@@ -61,7 +59,8 @@ const ImgAndDescriptionContainer = styled.div`
 `;
 
 const StyledDivForContentDescription = styled.div`
-  width: 50%;
+  width: 80%;
+  padding-top: 1rem;
 `;
 
 const RemoveOneFromQuantityButton = styled.button`
