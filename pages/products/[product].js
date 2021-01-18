@@ -4,7 +4,6 @@ import marked from "marked";
 import styled from "styled-components";
 import Page from "../../components/styled/Page";
 import useCart from "../../hooks/useCart";
-import Carousel from "../../components/Carousel";
 
 const AddToCartButton = styled.button`
   height: 2.5rem;
@@ -17,7 +16,6 @@ const AddToCartButton = styled.button`
   color: white;
   font-size: 20px;
   margin-top: 50px;
-
   &:hover {
     cursor: pointer;
   }
@@ -31,7 +29,6 @@ const Title = styled.div`
 const SubTitle = styled.p`
   color: #666;
   font-size: 22px;
-
   @media (max-width: 768px) {
     font-size: 20px;
     width: 50%;
@@ -45,19 +42,29 @@ const Price = styled.span`
   border-radius: 5px;
   background: #2cdb5b;
   color: white;
-  position:absolute;
   margin-bottom: 0.5rem;
-  bottom: 8px;
-  right: 2rem;
-  font-size: 1.3rem;
+  display: inline-block;
 `;
 
 const ImgAndDescriptionContainer = styled.div`
   display: flex;
   align-items: center;
   position: relative;
-  justify-content: center;
-  padding-top: 2rem;
+`;
+
+const StyledSpanForDescription = styled.span`
+  color: #999696;
+  font-weight: 550;
+`;
+
+const StyledImage = styled.img`
+  height: 150px;
+  width: auto;
+  position: absolute;
+  right: 100px;
+  @media (max-width: 768px) {
+    right: 0;
+  }
 `;
 
 const StyledDivForContentDescription = styled.div`
@@ -76,7 +83,6 @@ const RemoveOneFromQuantityButton = styled.button`
   color: red;
   margin-left: 1rem;
   text-align: center;
-
   &:hover {
     cursor: pointer;
   }
@@ -102,18 +108,9 @@ const Product = ({ product: { data, content } }) => {
 
       <SubTitle>{data.description}</SubTitle>
 
-      <ImgAndDescriptionContainer
-        style={{
-          justifyContent: "center",
-          display: "flex",
-        }}
-      >
-        <Carousel
-          
-          imgUrl={data.imgUrl}
-          imgUrl2={data.imgUrl2}
-          imgUrl3={data.imgUrl3}
-        />
+      <ImgAndDescriptionContainer>
+        <StyledImage src={data.imgUrl}></StyledImage>
+        <StyledSpanForDescription></StyledSpanForDescription>
       </ImgAndDescriptionContainer>
       <Price>€{data.price / 100}</Price>
       <StyledDivForContentDescription
