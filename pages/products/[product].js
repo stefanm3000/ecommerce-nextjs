@@ -15,7 +15,6 @@ const AddToCartButton = styled.button`
   border-radius: 5px;
   color: white;
   font-size: 20px;
-  margin-top: 50px;
   &:hover {
     cursor: pointer;
   }
@@ -36,20 +35,24 @@ const SubTitle = styled.p`
 `;
 
 const Price = styled.span`
-  font-size: 1.2rem;
+  font-size: 1rem;
   padding: 0.5rem;
   font-weight: 800;
   border-radius: 5px;
   background: #2cdb5b;
   color: white;
-  margin-bottom: 0.5rem;
   display: inline-block;
+  height: auto;
+  
+  text-align: center;
 `;
 
 const ImgAndDescriptionContainer = styled.div`
   display: flex;
   align-items: center;
   position: relative;
+  min-height: 10rem;
+  margin-bottom: 2rem;
 `;
 
 const StyledSpanForDescription = styled.span`
@@ -58,17 +61,16 @@ const StyledSpanForDescription = styled.span`
 `;
 
 const StyledImage = styled.img`
-  height: 150px;
-  width: auto;
-  position: absolute;
-  right: 100px;
   @media (max-width: 768px) {
     right: 0;
+    width: 50%;
   }
 `;
 
+const AddAndRemoveButtonContainer = styled.div``;
+
 const StyledDivForContentDescription = styled.div`
-  width: 50%;
+  width: 80%;
 `;
 
 const RemoveOneFromQuantityButton = styled.button`
@@ -77,7 +79,6 @@ const RemoveOneFromQuantityButton = styled.button`
   border-radius: 5px;
   color: white;
   font-size: 20px;
-  margin-top: 50px;
   background: transparent;
   border: 2px solid red;
   color: red;
@@ -86,6 +87,16 @@ const RemoveOneFromQuantityButton = styled.button`
   &:hover {
     cursor: pointer;
   }
+
+  @media (max-width: 425px) {
+    width: 2rem;
+    margin-left: 5px;
+  }
+`;
+
+const AddButtonAndPriceContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
 `;
 
 const Product = ({ product: { data, content } }) => {
@@ -105,27 +116,33 @@ const Product = ({ product: { data, content } }) => {
       <Title>
         <h1>{data.name}</h1>
       </Title>
-
       <SubTitle>{data.description}</SubTitle>
-
       <ImgAndDescriptionContainer>
+        <StyledSpanForDescription>
+          <StyledDivForContentDescription
+            dangerouslySetInnerHTML={{ __html: html }}
+          />
+        </StyledSpanForDescription>
         <StyledImage src={data.imgUrl}></StyledImage>
-        <StyledSpanForDescription></StyledSpanForDescription>
       </ImgAndDescriptionContainer>
-      <Price>€{data.price / 100}</Price>
-      <StyledDivForContentDescription
-        dangerouslySetInnerHTML={{ __html: html }}
-      />
-      <AddToCartButton onClick={handleClick}>Add to cart</AddToCartButton>
-      {cart.map((item) => {
-        if (item.id === data.id) {
-          return (
-            <RemoveOneFromQuantityButton onClick={handleRemove} key={data.id}>
-              -
-            </RemoveOneFromQuantityButton>
-          );
-        }
-      })}
+      <AddButtonAndPriceContainer>
+        <AddAndRemoveButtonContainer>
+          <AddToCartButton onClick={handleClick}>Add to cart</AddToCartButton>
+          {cart.map((item) => {
+            if (item.id === data.id) {
+              return (
+                <RemoveOneFromQuantityButton
+                  onClick={handleRemove}
+                  key={data.id}
+                >
+                  -
+                </RemoveOneFromQuantityButton>
+              );
+            }
+          })}
+        </AddAndRemoveButtonContainer>
+        <Price>€{data.price / 100}</Price>
+      </AddButtonAndPriceContainer>
     </Page>
   );
 };
